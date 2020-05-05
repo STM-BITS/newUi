@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="taskDialog" contentWidth="40%">
+		<HBox>
+			<Input id="tasknm" placeholder="Add task" class="sapUiSmallMargin" width="92%"/>
+			<Button icon="sap-icon://add" tooltip="Add new task" press="onAddTask"/>
+		</HBox>
+		<List items="{ToDos>/}">
+			<!--<StandardListItem-->
+			<!--title="{List>tasktitle}"-->
+			<!--icon="sap-icon://complete"-->
+			<!--iconDensityAware="false"-->
+			<!--iconInset="false" />-->
+			<CustomListItem>
+				<HBox justifyContent="SpaceBetween">
+					<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+						<Text text="{ToDos>taskName}" class="sapUiSmallMargin"></Text>
+					</VBox>
+					<HBox>
+						<RatingIndicator maxValue="1" class="sapUiSmallMarginTop" value="0" iconSize="32px" tooltip="Rating"/>
+						<CheckBox class="sapUiSmallMarginTop"></CheckBox>
+					</HBox>
+				</HBox>
+			</CustomListItem>
+		</List>
+		<buttons>
+			<!--<Button icon = "sap-icon://delete" type = "Reject"></Button>-->
+			<Button text="Cancel" press="onCancelPressToDo"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
