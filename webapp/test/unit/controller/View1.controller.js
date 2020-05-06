@@ -9,15 +9,15 @@ sap.ui.define([
 
 	QUnit.module("View Controller");
 
-	QUnit.module('View1 Controller', {
-		before: function () {
-			this.server = sinon.fakeServer.create();
-		},
-		after: function () {
-			this.server.restore();
-			delete this.server;
-		}
-	});
+	// QUnit.module('View1 Controller', {
+	// 	before: function () {
+	// 		this.server = sinon.fakeServer.create();
+	// 	},
+	// 	after: function () {
+	// 		this.server.restore();
+	// 		delete this.server;
+	// 	}
+	// });
 
 	// QUnit.test("I should test the View1 controller", function (assert) {
 	// 	var oAppController = new Controller();
@@ -45,7 +45,7 @@ sap.ui.define([
 		// console.log(callArgs.data);
 		// sinon.assert.calledWith(JSON.stringify(callArgs.data),)
 		assert.equal(JSON.stringify(callArgs.data), JSON.stringify([{
-			"uuid": "3D45F01FE5974CC297F8E14D5B799873",
+			"uuid": "55DF653E8B10414DA724C8E31EEA7C74",
 			"taskName": "Watch Series"
 		}]));
 	});
@@ -93,16 +93,15 @@ sap.ui.define([
 				var $data = $(data);
 				// console.log(data);
 				var aResponse = [{
-					uuid: "3D45F01FE5974CC297F8E14D5B799873",
-					taskName: "Watch Series"
+					"uuid": "55DF653E8B10414DA724C8E31EEA7C7",
+					"taskName": "Watch Series"
 				}];
 				// [{"uuid":"3D45F01FE5974CC297F8E14D5B799873","taskName":"Watch Series"}]
 				// console.log(JSON.stringify(data));
+				// actual, expected, msg
 				assert.equal(JSON.stringify(data), JSON.stringify(aResponse), 'Return all todos');
 				done1();
 			});
 	});
-
-	
 
 });
