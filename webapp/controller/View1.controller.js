@@ -57,7 +57,7 @@ sap.ui.define([
 				contentType: "application/json",
 				url: "http://localhost:8080/delete/" + id,
 				success: function (data, textStatus) {
-					this.loadData();
+					that.loadData();
 				},
 				error: function (error) {
 					console.log(error);
