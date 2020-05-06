@@ -81,7 +81,8 @@ sap.ui.define([
 			}
 		},
 		onAddPress: function (oEvent) {
-			var listName = oEvent.getSource().getParent().mAggregations.content[0].mProperties.value;
+			// var listName = oEvent.getSource().getParent().mAggregations.content[0].mProperties.value;
+			var listName = oEvent.getSource().getParent().getAggregation("content")[0].getValue();
 			var listobj = {
 				"taskName": listName
 			};
