@@ -57,7 +57,7 @@ sap.ui.define([
 				contentType: "application/json",
 				url: "http://localhost:8080/delete/" + id,
 				success: function (data, textStatus) {
-					this.loadData();
+					that.loadData();
 				},
 				error: function (error) {
 					console.log(error);
@@ -81,7 +81,8 @@ sap.ui.define([
 			}
 		},
 		onAddPress: function (oEvent) {
-			var listName = oEvent.getSource().getParent().mAggregations.content[0].mProperties.value;
+			// var listName = oEvent.getSource().getParent().mAggregations.content[0].mProperties.value;
+			var listName = oEvent.getSource().getParent().getAggregation("content")[0].getValue();
 			var listobj = {
 				"taskName": listName
 			};
