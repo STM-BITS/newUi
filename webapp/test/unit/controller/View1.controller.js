@@ -3,8 +3,8 @@
 sap.ui.define([
 	"todolist/ToDoList/controller/View1.controller",
 	"sap/ui/thirdparty/sinon",
-	"sap/ui/thirdparty/sinon-qunit"
-], function (Controller) {
+	"sap/ui/thirdparty/sinonqunit"
+], function (Controller, sinon, sinon-qunit) {
 	"use strict";
 
 	QUnit.module("View Controller");

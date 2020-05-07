@@ -16,6 +16,50 @@
 			Then.onTheAppPage.iShouldSeeTheApp();
 
 			//Cleanup
-			Then.iTeardownMyApp();
 		});
+		opaTest("I toggle the switch", function (Given, When, Then) {
+			// Arrangements
+			When.onTheAppPage.iToggleTheSwitch();
+
+			// Assertions
+			Then.onTheAppPage.theSwitchIsToggled();
+
+			//Cleanup
+		});
+		opaTest("Click on add button", function (Given, When, Then) {
+
+			When.onTheAppPage.iClickOnAddButton();
+				// Assertions
+			Then.onTheAppPage.iShouldSeeDialog();
+
+		});
+		opaTest("Click on cancel task button", function (Given, When, Then) {
+
+			When.onTheAppPage.iWriteATaskName();
+				// Assertions
+			Then.onTheAppPage.iClickOnCancelTaskButton();
+
+		});
+		opaTest("Click on add button", function (Given, When, Then) {
+
+			When.onTheAppPage.iClickOnAddButton();
+				// Assertions
+			Then.onTheAppPage.iShouldSeeDialog();
+
+		});
+		opaTest("Click on add task button", function (Given, When, Then) {
+
+			When.onTheAppPage.iWriteATaskName();
+				// Assertions
+			Then.onTheAppPage.iClickOnAddTaskButton();
+
+		});
+		opaTest("I Delete the task", function (Given, When, Then) {
+
+			When.onTheAppPage.iDeleteATask();
+				// Assertions
+			Then.onTheAppPage.iSeeTheTaskIsDeleted();
+
+		});
+		
 	});
