@@ -2,6 +2,7 @@ sap.ui.define([
 	"sap/ui/test/Opa5",
 	"./arrangements/Startup",
 	"./NavigationJourney"
+
 ], function (Opa5, Startup) {
 	"use strict";
 
@@ -10,4 +11,5 @@ sap.ui.define([
 		viewNamespace: "todolist.ToDoList.view.",
 		autoWait: true
 	});
+	sap.ui.require(["todoList/test/integration/View1Journey"],function(){QUnit.start();});
 });

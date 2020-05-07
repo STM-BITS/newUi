@@ -22,9 +22,11 @@ sap.ui.define([
 					oModel.setData(data);
 					oModel.refresh(true);
 					console.log("Success");
+					return true;
 				},
 				error: function (error) {
 					console.log(error);
+					return false;
 				}
 			});
 		},
@@ -103,88 +105,89 @@ sap.ui.define([
 			});
 
 		},
-		onListSelection: function (oEvent) {
-			if (this.getView().byId("switch").getState() !== false) {
-				var title = this.getView().getModel("ToDoList").getProperty(oEvent.getSource().getBindingContextPath()).todoListName;
-				if (!this._oDialogtask) {
-					Fragment.load({
-						name: "todolist.ToDoList.view.taskDialogue",
-						controller: this
-					}).then(function (oDialog) {
-						this._oDialogtask = oDialog;
-						this.getView().addDependent(oDialog);
-						this._oDialogtask.setTitle(title);
-						this._oDialogtask.open();
-					}.bind(this));
+		// onListSelection: function (oEvent) {
+		// 	if (this.getView().byId("switch").getState() !== false) {
+		// 		var title = this.getView().getModel("ToDoList").getProperty(oEvent.getSource().getBindingContextPath()).todoListName;
+		// 		if (!this._oDialogtask) {
+		// 			Fragment.load({
+		// 				name: "todolist.ToDoList.view.taskDialogue",
+		// 				controller: this
+		// 			}).then(function (oDialog) {
+		// 				this._oDialogtask = oDialog;
+		// 				this.getView().addDependent(oDialog);
+		// 				this._oDialogtask.setTitle(title);
+		// 				this._oDialogtask.open();
+		// 			}.bind(this));
 
-				} else {
-					this._oDialogtask.setTitle(title);
-					this._oDialogtask.open();
-				}
-			} else {
+		// 		} else {
+		// 			this._oDialogtask.setTitle(title);
+		// 			this._oDialogtask.open();
+		// 		}
+		// 	} else {
 
-				var id = this.getView().getModel("ToDoList").getProperty(oEvent.getSource().getBindingContextPath()).uuid;
-				var title = this.getView().getModel("ToDoList").getProperty(oEvent.getSource().getBindingContextPath()).todoListName;
-				var oModel = this.getView().getModel("ToDos");
-				jQuery.ajax({
-					type: "GET",
-					contentType: "application/json",
-					url: "http://localhost:8080/" + id + "/getAllTodos/",
-					success: function (data, textStatus) {
-						oModel.setData(data);
-						oModel.refresh(true);
-						console.log("Success");
-						if (!this._oDialogtask) {
-							Fragment.load({
-								name: "todolist.ToDoList.view.taskDialogue",
-								controller: this
-							}).then(function (oDialog) {
-								this._oDialogtask = oDialog;
-								this.getView().addDependent(oDialog);
-								this._oDialogtask.setTitle(title);
-								this._oDialogtask.open();
-							}.bind(this));
+		// 		var id = this.getView().getModel("ToDoList").getProperty(oEvent.getSource().getBindingContextPath()).uuid;
+		// 		var title = this.getView().getModel("ToDoList").getProperty(oEvent.getSource().getBindingContextPath()).todoListName;
+		// 		var oModel = this.getView().getModel("ToDos");
+		// 		jQuery.ajax({
+		// 			type: "GET",
+		// 			contentType: "application/json",
+		// 			url: "http://localhost:8080/" + id + "/getAllTodos/",
+		// 			success: function (data, textStatus) {
+		// 				oModel.setData(data);
+		// 				oModel.refresh(true);
+		// 				console.log("Success");
+		// 				if (!this._oDialogtask) {
+		// 					Fragment.load({
+		// 						name: "todolist.ToDoList.view.taskDialogue",
+		// 						controller: this
+		// 					}).then(function (oDialog) {
+		// 						this._oDialogtask = oDialog;
+		// 						this.getView().addDependent(oDialog);
+		// 						this._oDialogtask.setTitle(title);
+		// 						this._oDialogtask.open();
+		// 					}.bind(this));
 
-						} else {
-							this._oDialogtask.setTitle(title);
-							this._oDialogtask.open();
-						}
-					},
-					error: function (error) {
-						console.log(error);
-					}.bind(this)
-				});
+		// 				} else {
+		// 					this._oDialogtask.setTitle(title);
+		// 					this._oDialogtask.open();
+		// 				}
+		// 			},
+		// 			error: function (error) {
+		// 				console.log(error);
+		// 			}.bind(this)
+		// 		});
 
-			}
+		// 	}
 
-		},
-		onAddTask: function (oEvent) {
-			var taskname = oEvent.getSource().getParent().mAggregations.items[0].getProperty("value");
-			var taskobj = {
-				"taskName": "Buy Milk",
-			};
-			jQuery.ajax({
-				type: "POST",
-				contentType: "application/json",
-				url: "http://localhost:8080/create",
-				data: JSON.stringify(taskobj),
-				success: function (data, textStatus) {
-					this.loadData();
-					this._oDialog.close();
-				},
-				error: function (error) {
-					this.loadData();
-					this._oDialog.close();
-				}.bind(this)
-			});
+		// },
+		// onAddTask: function (oEvent) {
+		// 	var taskname = oEvent.getSource().getParent().mAggregations.items[0].getProperty("value");
+		// 	var taskobj = {
+		// 		"taskName": "Buy Milk",
+		// 	};
+		// 	jQuery.ajax({
+		// 		type: "POST",
+		// 		contentType: "application/json",
+		// 		url: "http://localhost:8080/create",
+		// 		data: JSON.stringify(taskobj),
+		// 		success: function (data, textStatus) {
+		// 			this.loadData();
+		// 			this._oDialog.close();
+		// 		},
+		// 		error: function (error) {
+		// 			this.loadData();
+		// 			this._oDialog.close();
+		// 		}.bind(this)
+		// 	});
 
-		},
+		// },
 		onCancelPress: function (oEvent) {
 			this._oDialog.close();
 		},
-		onCancelPressToDo: function (oEvent) {
-			this._oDialogtask.close();
-		}
+		test: function(val){return val;}
+		// onCancelPressToDo: function (oEvent) {
+		// 	this._oDialogtask.close();
+		// }
 
 	});
 });
