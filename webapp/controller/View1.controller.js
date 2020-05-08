@@ -184,7 +184,7 @@ sap.ui.define([
 
 		// },
 		onCancelPress: function (oEvent) {
-			this._oDialog.getContent()[0].setValue('');
+			/*this._oDialog.getContent()[0].setValue('');*/
 			this._oDialog.close();
 			
 		},
