@@ -96,10 +96,12 @@ sap.ui.define([
 				data: JSON.stringify(listobj),
 				success: function (data, textStatus) {
 					that.loadData();
+					that._oDialog.getContent()[0].setValue('');
 					that._oDialog.close();
 				},
 				error: function (error) {
 					that.loadData();
+					that._oDialog.getContent()[0].setValue('')
 					that._oDialog.close();
 				}.bind(this)
 			});
@@ -182,7 +184,9 @@ sap.ui.define([
 
 		// },
 		onCancelPress: function (oEvent) {
+			this._oDialog.getContent()[0].setValue('');
 			this._oDialog.close();
+			
 		},
 		test: function(val){return val;}
 		// onCancelPressToDo: function (oEvent) {
