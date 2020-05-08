@@ -50,6 +50,17 @@ sap.ui.define([
 							
 						}
 					});
+				},
+				iClickOnCancel: function() {
+					return this.waitFor({
+						searchOpenDialogs: true,
+						controlType: "sap.m.Button",
+						success: function(oButton) {
+								oButton[1].firePress();
+								Opa5.assert.ok(true, "The Dialog is cancelled");
+						},
+						errorMessage: "Did not find the Dialog"
+					});
 				}
 			},
 
@@ -124,7 +135,22 @@ sap.ui.define([
 						errorMessage: "Did not find the Dialog"
 					});
 				},
+				iSeeTheInputFieldCleared: function(){
+					return this.waitFor({
+						searchOpenDialogs: true,
+						controlType: "sap.m.Input",
+						success: function(oInput){
+							debugger
+							if(oInput[0].getValue() === null ||oInput[0].getValue() === "" )
+							Opa5.assert.ok(true, "The input field is cleared");
+							else
+							Opa5.assert.ok(false, "The input field is not cleared");
+						},
+						errorMessage: "The input field contains data"
+					});
+				}
 			}
+			
 		}
 	});
 

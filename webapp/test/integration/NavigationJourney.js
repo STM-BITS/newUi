@@ -61,5 +61,15 @@
 			Then.onTheAppPage.iSeeTheTaskIsDeleted();
 
 		});
+		opaTest("I Should not see the input text after reopening the dialog on cancel", function (Given, When, Then) {
+
+			When.onTheAppPage.iClickOnAddButton();
+			When.onTheAppPage.iWriteATaskName();
+			When.onTheAppPage.iClickOnCancel();
+			When.onTheAppPage.iClickOnAddButton();
+				// Assertions
+			Then.onTheAppPage.iSeeTheInputFieldCleared();
+
+		});
 		
 	});
